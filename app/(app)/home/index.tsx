@@ -41,11 +41,14 @@ export default function Index() {
   };
 
   const fetchUserEchos = async () => {
-    const response = await fetch("http://localhost:3000/user/list-echos", {
-      headers: {
-        Authorization: `Bearer ${user!.sub}`,
+    const response = await fetch(
+      "https://api.getmemoria.tech/user/list-echos",
+      {
+        headers: {
+          Authorization: `Bearer ${user!.sub}`,
+        },
       },
-    });
+    );
 
     const result = await response.json();
     console.log("Echos:", result);
@@ -206,14 +209,17 @@ export default function Index() {
                     type: "audio/m4a",
                   });
 
-                  const response = await fetch("http://localhost:3000/upload", {
-                    method: "POST",
-                    headers: {
-                      Authorization: `Bearer ${user.sub}`,
-                      "Content-Type": "multipart/form-data",
+                  const response = await fetch(
+                    "https://api.getmemoria.tech/upload",
+                    {
+                      method: "POST",
+                      headers: {
+                        Authorization: `Bearer ${user.sub}`,
+                        "Content-Type": "multipart/form-data",
+                      },
+                      body: formData,
                     },
-                    body: formData,
-                  });
+                  );
 
                   const result = await response.json();
                   console.log("Upload result:", result);
